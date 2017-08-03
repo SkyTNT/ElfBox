@@ -1,4 +1,4 @@
-package com.eemc.aida;
+package com.skytnt.elfbox;
 
 import android.content.*;
 import android.widget.*;
@@ -111,9 +111,9 @@ public final class Utils {
 	static public String disassemble(int start_addr,int stop_addr,String filePath){
 		try
 		{
-		    Runtime.getRuntime().exec("chmod 751 /data/data/com.eemc.aida/files/objdump");
+		    Runtime.getRuntime().exec("chmod 751 /data/data/com.skytnt.elfbox/files/objdump");
 		    String start_addr_s=Integer.toHexString(start_addr);
-		    BufferedReader br=new BufferedReader(new InputStreamReader( Runtime.getRuntime().exec("/data/data/com.eemc.aida/files/objdump -S -C --start-address=0x"+start_addr_s+" --stop-address=0x"+Integer.toHexString(stop_addr)+" "+filePath).getInputStream()));
+		    BufferedReader br=new BufferedReader(new InputStreamReader( Runtime.getRuntime().exec("/data/data/com.skytnt.elfbox/files/objdump -S -C --start-address=0x"+start_addr_s+" --stop-address=0x"+Integer.toHexString(stop_addr)+" "+filePath).getInputStream()));
 		    String result="";
 		    String line;
 		    boolean start=false;

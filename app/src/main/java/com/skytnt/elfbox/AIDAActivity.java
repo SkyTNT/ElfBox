@@ -1,4 +1,4 @@
-package com.eemc.aida;
+package com.skytnt.elfbox;
 import android.app.*;
 import android.content.*;
 import android.content.res.*;
@@ -11,8 +11,8 @@ import android.text.*;
 import android.view.*;
 import android.view.View.*;
 import android.widget.*;
-import com.eemc.aida.elf.*;
-import com.eemc.aida.views.*;
+import com.skytnt.elfbox.elf.*;
+import com.skytnt.elfbox.views.*;
 import java.util.*;
 import java.util.regex.*;
 

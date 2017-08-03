@@ -1,4 +1,4 @@
-package com.eemc.aida.views;
+package com.skytnt.elfbox.views;
 import android.content.*;
 import android.graphics.*;
 import android.support.design.widget.*;

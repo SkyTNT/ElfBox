@@ -1,12 +1,12 @@
-package com.eemc.aida.views;
+package com.skytnt.elfbox.views;
 import android.graphics.*;
 import android.text.*;
 import android.text.style.*;
 import android.view.*;
 import android.widget.*;
-import com.eemc.aida.*;
-import com.eemc.aida.elf.*;
-import com.eemc.aida.views.codeview.*;
+import com.skytnt.elfbox.*;
+import com.skytnt.elfbox.elf.*;
+import com.skytnt.elfbox.views.codeview.*;
 import java.util.*;
 import java.util.regex.*;
 

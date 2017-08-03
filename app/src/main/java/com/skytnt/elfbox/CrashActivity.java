@@ -1,4 +1,4 @@
-package com.eemc.aida;
+package com.skytnt.elfbox;
 import android.app.*;
 import android.content.*;
 import android.graphics.*;

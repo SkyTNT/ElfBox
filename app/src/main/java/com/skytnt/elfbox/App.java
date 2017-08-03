@@ -1,4 +1,4 @@
-package com.eemc.aida;
+package com.skytnt.elfbox;
 import android.app.*;
 import android.util.*;
 import java.util.*;
@@ -17,6 +17,6 @@ public class App extends Application
 	}
 	static
 	{
-        System.loadLibrary("aida");
+        System.loadLibrary("elfbox");
     }
 }

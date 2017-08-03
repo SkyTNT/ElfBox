@@ -1,4 +1,4 @@
-package com.eemc.aida.views.codeview;
+package com.skytnt.elfbox.views.codeview;
 
 import android.content.*;
 import android.graphics.*;

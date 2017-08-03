@@ -1,4 +1,4 @@
-package com.eemc.aida.elf;
+package com.skytnt.elfbox.elf;
 
 public class section
 {

@@ -1,4 +1,4 @@
-package com.eemc.aida;
+package com.skytnt.elfbox;
 
 import android.app.*;
 import android.content.*;
@@ -187,7 +187,6 @@ public class MainActivity extends Activity
 			OutputStream out=openFileOutput("objdump",MODE_WORLD_WRITEABLE|MODE_WORLD_READABLE);
 			out.write(b);
 			out.close();
-			//Runtime.getRuntime().exec("chmod 777 /data/data/com.eemc.aida/files/objdump");
 		}
 		catch (Exception e)
 		{

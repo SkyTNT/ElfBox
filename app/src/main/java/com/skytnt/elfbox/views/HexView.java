@@ -1,11 +1,11 @@
-package com.eemc.aida.views;
+package com.skytnt.elfbox.views;
 
 import android.content.*;
 import android.graphics.*;
 import android.view.*;
 import android.widget.*;
-import com.eemc.aida.elf.*;
-import com.eemc.aida.*;
+import com.skytnt.elfbox.elf.*;
+import com.skytnt.elfbox.*;
 
 public class HexView extends RelativeLayout
 {

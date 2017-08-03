@@ -1,6 +1,6 @@
-package com.eemc.aida.elf;
+package com.skytnt.elfbox.elf;
 
-import com.eemc.aida.*;
+import com.skytnt.elfbox.*;
 import java.util.*;
 public class dump
 {
@@ -93,7 +93,7 @@ public class dump
 		byte[] des =Utils.cp(bs,index*16+sec.offset,16);
 		 symbol sym = new symbol();
 		 sym.name =getString(elf.sections.get(sec.link),Utils.cb2i(des, 0, 4));
-		 sym.demangledname=(sym.name.equals(""))?"":Utils.demangle(sym.name);
+		 sym.demangledname=Utils.demangle(sym.name);
 		 sym.value = Utils.cb2i(des, 4, 4);
 		 sym.size = Utils.cb2i(des, 8, 4);
 		 sym.other = des[13];
