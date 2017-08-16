@@ -20,7 +20,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.widget.PopupMenu;
 
-public class AIDAActivity extends Activity
+public class DisasmActivity extends Activity
 {
 	public String path;
 	RelativeLayout mainlayout;
@@ -33,7 +33,7 @@ public class AIDAActivity extends Activity
 	EditText symsearch;
 	public TabView tabview;
 	HexView vhex;
-	AIDAView vAIDA;
+	DisasmView vAIDA;
 	SymbolAdapter symad;
 	Activity self=this;
 	int width,height,sbheight;
@@ -266,9 +266,9 @@ public class AIDAActivity extends Activity
 		tabview.addTab(1,"HEX视图",rHex);
 		
 		RelativeLayout rAIDA=new RelativeLayout(this);
-		vAIDA=new AIDAView(this,width,height-height/10-height/15);
+		vAIDA=new DisasmView(this,width,height-height/10-height/15);
 		rAIDA.addView(vAIDA,width,height-height/10-height/15);
-		tabview.addTab(2,"AIDA视图",rAIDA);
+		tabview.addTab(2,"反汇编视图",rAIDA);
 		
 	
 		tabview.setShowingView(0);

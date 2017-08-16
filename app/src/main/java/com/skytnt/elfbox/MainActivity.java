@@ -153,7 +153,7 @@ public class MainActivity extends Activity
 				@Override
 				public void onClick(View p1)
 				{
-					Intent intent=new Intent(self,AIDAActivity.class);
+					Intent intent=new Intent(self,DisasmActivity.class);
 					intent.putExtra("path",path);
 					startActivity(intent);
 				}

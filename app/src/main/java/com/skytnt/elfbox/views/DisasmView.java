@@ -9,16 +9,14 @@ import com.skytnt.elfbox.elf.*;
 import com.skytnt.elfbox.views.codeview.*;
 import java.util.*;
 import java.util.regex.*;
+import android.content.*;
 
-public class AIDAView extends TabView
+public class DisasmView extends TabView
 {
-	AIDAActivity aac;
-	static String regnames="(a[1234]|r(0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15)|sl|fp|ip|sp|lr|pc|WR|SB|SL|FP|IP|SP|LR|PC)";
 	HashMap<Integer,CodeView> tvs=new HashMap<Integer,CodeView>();
 	
-	public AIDAView(AIDAActivity aac,int width,int height){
-		super(aac,width,height,height/20);
-		this.aac=aac;
+	public DisasmView(Context c,int width,int height){
+		super(c,width,height,height/20);
 	}
 	public void addNewText(final int id,final String text){
 	    
