@@ -1,12 +1,12 @@
 package com.skytnt.elfbox;
 
+import android.animation.*;
 import android.app.*;
 import android.content.*;
 import android.content.res.*;
 import android.graphics.*;
 import android.os.*;
 import android.support.design.widget.*;
-import android.support.v7.app.*;
 import android.support.v7.widget.*;
 import android.view.*;
 import android.view.View.*;
@@ -14,8 +14,8 @@ import android.widget.*;
 import java.io.*;
 import org.json.*;
 
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import com.skytnt.elfbox.views.*;
 
 public class MainActivity extends Activity
 {
@@ -24,7 +24,6 @@ public class MainActivity extends Activity
 	JSONObject projects;
 	Activity self=this;
 	int width,height,sbheight;
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState)
 	{
@@ -75,19 +74,24 @@ public class MainActivity extends Activity
 		mainlayout.addView(plv,width,height-height/10);
 		plist=new LinearLayout(this);
 		plist.setOrientation(1);
+		
 		plv.addView(plist);
 		try
 		{
-			for (int i=0;i<projects.getInt("num");i++)
+		    JSONArray ns=projects.names();
+			for (int i=0;i<ns.length();i++)
 			{
-				addProjectButton(projects.getString(i+""));
+			    if(((String)ns.get(i)).equals("num")){
+				continue;
+			    }
+			    ProjectButton pj=new ProjectButton(self,projects,Integer.valueOf((String)ns.get(i)),width,height/10);
+			    plist.addView(pj,width,height/10);
 			}
 		}
 		catch (Exception e)
 		{
-			
+		    Toast.makeText(this, "" + e, Toast.LENGTH_LONG).show();
 		}
-		
 		final FloatingActionButton newpj=new FloatingActionButton(this);
 		newpj.setImageResource(R.drawable.newproject);
 	    newpj.setBackgroundTintList(ColorStateList.valueOf(0xff1e88e5));
@@ -104,9 +108,13 @@ public class MainActivity extends Activity
 							{
 								try
 								{
-									for (int i=0;i<projects.getInt("num");i++)
+								    JSONArray ns=projects.names();
+									for (int i=0;i<ns.length();i++)
 									{
-										if(projects.getString(i+"").equals(fc.chose.getPath())){
+									    if(((String)ns.get(i)).equals("num")){
+										continue;
+									    }
+										if(projects.getString((String)ns.get(i)).equals(fc.chose.getPath())){
 										    Snackbar.make(mainlayout,"错误,你已添加过了",Snackbar.LENGTH_SHORT).show();
 											return;
 										}
@@ -116,9 +124,10 @@ public class MainActivity extends Activity
 									fis.read(b);
 									fis.close();
 									if(b[0]==0x7f&&b[1]==0x45&&b[2]==0x4c&&b[3]==0x46){//判断文件头
-									addProjectButton(fc.chose.getPath());
-									projects.put("num",plist.getChildCount());
-									projects.put(""+(plist.getChildCount()-1),fc.chose.getPath());
+									projects.put(""+Integer.valueOf(projects.getString("num")),fc.chose.getPath());
+									ProjectButton pj=new ProjectButton(self,projects,Integer.valueOf(projects.getString("num")),width,height/10);
+									plist.addView(pj,width,height/10);
+									projects.put("num",(Integer.valueOf(projects.getString("num"))+1)+"");
 									}else{
 									    Snackbar.make(mainlayout,"错误,该文件不是有效的elf文件",Snackbar.LENGTH_SHORT).show();
 									}
@@ -133,34 +142,6 @@ public class MainActivity extends Activity
 			});
 		mainlayout.addView(newpj,height/10,height/10);
     }
-	
-	void addProjectButton(final String path){
-	    RelativeLayout l=new RelativeLayout(self);
-	    CardView pj=new CardView(self);
-		RelativeLayout pjl=new RelativeLayout(self);
-		TextView pt=new TextView(self);
-		pj.setRadius(16);
-		pj.setCardElevation(10);
-		pj.setX(10);
-		pj.setY(10);
-		pt.setText(path.substring(path.lastIndexOf("/")+1));
-		pj.setCardBackgroundColor(Color.WHITE);
-		pt.setTextColor(Color.BLACK);
-		pjl.setGravity(Gravity.CENTER);
-		pjl.addView(pt);
-	    pj.addView(pjl,width-20,(height/6)-20);
-		pj.setOnClickListener(new OnClickListener(){
-				@Override
-				public void onClick(View p1)
-				{
-					Intent intent=new Intent(self,DisasmActivity.class);
-					intent.putExtra("path",path);
-					startActivity(intent);
-				}
-			});
-		l.addView(pj,width-20,(height/6)-20);
-		plist.addView(l,width,height/6);
-	}
 	
 	void initFiles() throws Exception{
 		copyBin();

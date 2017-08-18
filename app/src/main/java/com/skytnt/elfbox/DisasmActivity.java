@@ -25,7 +25,7 @@ public class DisasmActivity extends Activity
 	public String path;
 	RelativeLayout mainlayout;
 	ProgressBar pb;
-	ImageButton showmenu;
+	ImageView showmenu;
 	PopupMenu menu;
     RelativeLayout rsyms;
 	TextView loadingtext;
@@ -80,10 +80,9 @@ public class DisasmActivity extends Activity
 		pb.setY(height/20-height/30);
 		mainlayout.addView(pb,height/15,height/15);
 		
-		showmenu=new ImageButton(this);
+		showmenu=new ImageView(this);
 		showmenu.setX(width-height/15-10);
 		showmenu.setY(height/20-height/30);
-	    showmenu.setBackgroundColor(0xff1e88e5);
 		showmenu.setImageResource(R.drawable.menu);
 		mainlayout.addView(showmenu,height/15,height/15);
 		menu=new PopupMenu(self,showmenu);
