@@ -20,10 +20,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.widget.PopupMenu;
 
-public class DisasmActivity extends Activity
+public class DisasmActivity extends BaseActivity
 {
 	public String path;
-	RelativeLayout mainlayout;
 	ProgressBar pb;
 	ImageView showmenu;
 	PopupMenu menu;
@@ -35,8 +34,6 @@ public class DisasmActivity extends Activity
 	HexView vhex;
 	DisasmView vAIDA;
 	SymbolAdapter symad;
-	Activity self=this;
-	int width,height,sbheight;
 	dump dumper;
 	public Vector<symbol>syms=new Vector<symbol>();
 	int symnum;
@@ -49,31 +46,8 @@ public class DisasmActivity extends Activity
 		super.onCreate(savedInstanceState);
 		path=this.getIntent().getExtras().getString("path");
 		dumper=new dump(path);
-		mainlayout=new RelativeLayout(this);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		WindowManager wm =(WindowManager)getSystemService(Context.WINDOW_SERVICE);
-		width = wm.getDefaultDisplay().getWidth();
-		height = wm.getDefaultDisplay().getHeight();
-		int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-		if (resourceId > 0) {
-			sbheight=getResources().getDimensionPixelSize(resourceId);
-			height-=sbheight;
-		}
-		setContentView(mainlayout);
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-           	getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-			mainlayout.setFitsSystemWindows(true);
-			ViewGroup contentLayout = (ViewGroup)findViewById(android.R.id.content);
-			View statusBarView = new View(this);
-			contentLayout.addView(statusBarView,width,sbheight);
-			statusBarView.setBackgroundColor(0xff1e88e5);
-        }
-		Toolbar tb=new Toolbar(this);
-		tb.setTitle(R.string.app_name);
+		
 		tb.setSubtitle(path.substring(path.lastIndexOf("/")+1));
-		tb.setTitleTextColor(Color.WHITE);
-		tb.setBackgroundColor(0xff1e88e5);
-		mainlayout.addView(tb,width,height/10);
 		
 		pb=new ProgressBar(this);
 		pb.setX(width-(2*height)/15-20);

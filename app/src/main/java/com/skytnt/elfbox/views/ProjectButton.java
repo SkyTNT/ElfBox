@@ -40,7 +40,7 @@ public class ProjectButton extends RelativeLayout
 	cv.setX(10);
 	cv.setY(10);
 	cv.setCardBackgroundColor(Color.WHITE);
-	icon.setImageResource(R.drawable.file_so);
+	icon.setImageResource(R.drawable.file_elf);
 	cvl.addView(icon,height-20,height-20);
 	name.setX(height-20);
 	name.setText(path.substring(path.lastIndexOf("/")+1));
@@ -145,12 +145,29 @@ public class ProjectButton extends RelativeLayout
 	}
     
 	void showInfo(){
-	    
 	  BottomSheetDialog sheetDialog=new BottomSheetDialog(getContext());
-	  TextView tv=new TextView(getContext());
-	  tv.setText(info);
-	  tv.setTextSize(20);
-	  sheetDialog.setContentView(tv);
+	  LinearLayout l=new LinearLayout(getContext());
+	  l.setOrientation(1);
+	  TextView title1=new TextView(getContext());
+	  title1.setTextColor(Color.BLACK);
+	  title1.setText("路径:");
+	  title1.setTextSize(30);
+	  l.addView(title1);
+	  TextView pt=new TextView(getContext());
+	  pt.setText(path);
+	  pt.setTextSize(20);
+	  l.addView(pt);
+	  TextView title2=new TextView(getContext());
+	  title2.setTextColor(Color.BLACK);
+	  title2.setText("文件头:");
+	  title2.setTextSize(30);
+	  l.addView(title2);
+	  TextView ht=new TextView(getContext());
+	  ht.setText(info);
+	  ht.setTextSize(20);
+	  ht.setTextIsSelectable(true);
+	  l.addView(ht);
+	  sheetDialog.setContentView(l);
 	  sheetDialog.show();
 	}
 	
